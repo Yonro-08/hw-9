@@ -3,7 +3,6 @@ import { useState } from "react";
 import { Box, Button, Flex, Heading, Input } from "@chakra-ui/react";
 
 import { useBooks } from "../../hooks/useBooks";
-import { color } from "framer-motion";
 
 export default function SearchForm() {
   const [inputValue, setInputValue] = useState("");

@@ -15,10 +15,12 @@ export default function HomePage() {
   }, []);
 
   return (
-    <Grid gridTemplateColumns={["repeat(2, 1fr)"]} gap="20px">
-      <SearchForm />
-      <HomePageImage />
+    <>
+      <Grid gridTemplateColumns={["1fr", "1fr", "repeat(2, 1fr)"]} gap="20px">
+        <SearchForm />
+        <HomePageImage />
+      </Grid>
       <BookCards books={books} />
-    </Grid>
+    </>
   );
 }

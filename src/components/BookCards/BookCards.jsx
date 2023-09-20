@@ -3,7 +3,7 @@ import BookCard from "./BookCard/BookCard";
 
 export default function BookCards({ books }) {
   return (
-    <Box gridColumn="span 2">
+    <Box>
       <Container maxW="1280px">
         <Flex flexWrap="wrap" justifyContent="center" gap="30px">
           {books.length > 0 &&
