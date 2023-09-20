@@ -19,9 +19,15 @@ export const useBooks = create((set, get) => ({
       books: [],
     })),
 
-  saveLocalStorage: (book, isWishlist, setIsWishlist) => {
+  getLocalStorage: () =>
+    set(() => {
+      return { localBooks: JSON.parse(localStorage.getItem("books")) || [] };
+    }),
+
+  handleHeartClick: (book, setIsWishlist) => {
     const localBooks = JSON.parse(localStorage.getItem("books")) || [];
-    if (!isWishlist) {
+    const findLocalBook = localBooks.findIndex((elem) => elem.id === book.id);
+    if (findLocalBook === -1) {
       localBooks.push(book);
       localStorage.setItem("books", JSON.stringify(localBooks));
       setIsWishlist(true);
@@ -32,20 +38,12 @@ export const useBooks = create((set, get) => ({
     }
   },
 
-  getLocalStorage: () =>
-    set(() => {
-      return { localBooks: JSON.parse(localStorage.getItem("books")) || [] };
-    }),
-
-  checkSaveWishlist: (book, setIsWishlist) => {
+  checkHeart: (book) => {
     const localBooks = get().localBooks;
-    if (localBooks.length > 0) {
-      localBooks.filter((localBook) => {
-        if (localBook.id === book.id) {
-          setIsWishlist(true);
-          return;
-        }
-      });
+    const findLocalBook = localBooks.findIndex((elem) => elem.id === book.id);
+    if (findLocalBook !== -1) {
+      return true;
     }
+    return false;
   },
 }));

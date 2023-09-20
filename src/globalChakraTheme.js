@@ -1,11 +1,11 @@
 import { extendTheme } from "@chakra-ui/react";
 
-export const globalChakraStyle = extendTheme({
+export const globalChakraTheme = extendTheme({
   components: {
     Button: {
       variants: {
         headerBtn: {
-          padding: "10px",
+          position: "relative",
           background: "rgb(31, 64, 104)",
           color: "white",
           fontFamily: "Comfortaa",
@@ -18,6 +18,16 @@ export const globalChakraStyle = extendTheme({
           fontFamily: "Comfortaa",
           fontWeight: "bold",
         },
+        buttonLike: {
+          pos: "absolute",
+          top: "0",
+          left: "0",
+          height: "max-content",
+          p: "10px",
+          fontSize: "14px",
+          bg: "transparent",
+          _hover: { bg: "transparent" },
+        },
       },
     },
     Input: {
@@ -29,9 +39,6 @@ export const globalChakraStyle = extendTheme({
             padding: "0",
             borderRadius: "20px",
             caretColor: "black",
-            _placeholder: {
-              textAlign: "center",
-            },
           },
         },
       },
@@ -43,6 +50,17 @@ export const globalChakraStyle = extendTheme({
           fontFamily: "Comfortaa",
           textAlign: "center",
         },
+        bookHeader: {
+          my: "20px",
+          textAlign: "center",
+          fontWeight: "bold",
+          fontSize: "16px",
+        },
+      },
+    },
+    Text: {
+      baseStyle: {
+        fontSize: "16px",
       },
     },
   },

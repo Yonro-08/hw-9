@@ -7,9 +7,10 @@ import BookCards from "../components/BookCards/BookCards";
 import { Box, Text } from "@chakra-ui/react";
 
 export default function WishlistPage() {
-  const { localBooks, getLocalStorage } = useBooks();
+  const { localBooks, getLocalStorage, clearBooks } = useBooks();
 
   useEffect(() => {
+    clearBooks();
     getLocalStorage();
   }, []);
 

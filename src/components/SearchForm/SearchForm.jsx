@@ -3,12 +3,18 @@ import { useState } from "react";
 import { Box, Button, Flex, Heading, Input } from "@chakra-ui/react";
 
 import { useBooks } from "../../hooks/useBooks";
+import { color } from "framer-motion";
 
 export default function SearchForm() {
   const [inputValue, setInputValue] = useState("");
+  const [handleError, setHandleError] = useState(false);
   const { getFetchBooks } = useBooks();
 
   const getData = () => {
+    if (inputValue === "") {
+      setHandleError(true);
+      return;
+    }
     getFetchBooks(inputValue);
   };
 
@@ -27,8 +33,17 @@ export default function SearchForm() {
         <Input
           value={inputValue}
           variant="inputForm"
-          placeholder="search a book"
+          placeholder={
+            handleError ? "The field cannot be empty" : "search a book"
+          }
+          _placeholder={{
+            textAlign: "center",
+            color: `${handleError ? "red" : "gray"}`,
+          }}
           onChange={(event) => setInputValue(event.target.value)}
+          onKeyDown={(event) => {
+            if (event.key === "Enter") getData();
+          }}
         />
         <Button variant="buttonForm" onClick={getData}>
           Search
